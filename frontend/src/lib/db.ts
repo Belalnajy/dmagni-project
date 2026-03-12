@@ -1,9 +1,6 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
-import { User } from "./entities/user.entity";
-import { Subscription } from "./entities/subscription.entity";
-import { GenerationHistory } from "./entities/generation-history.entity";
-import { ContactMessage } from "./entities/contact-message.entity";
+import { User, Subscription, GenerationHistory, ContactMessage } from "./entities";
 
 let dataSource: DataSource | null = null;
 
