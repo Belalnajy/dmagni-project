@@ -12,7 +12,7 @@ async function createApp(): Promise<express.Express> {
   if (isInitialized && cachedApp) return cachedApp;
 
   const adapter = new ExpressAdapter(expressApp);
-  const app = await NestFactory.create(AppModule, adapter, { logger: false });
+  const app = await NestFactory.create(AppModule, adapter);
 
   const allowedOrigins = process.env.ALLOWED_ORIGINS
     ? process.env.ALLOWED_ORIGINS.split(',')
@@ -34,9 +34,14 @@ async function createApp(): Promise<express.Express> {
 }
 
 export default async function handler(req: any, res: any) {
-  if (req.url.startsWith('/api')) {
-    req.url = req.url.slice(4) || '/';
+  try {
+    if (req.url.startsWith('/api')) {
+      req.url = req.url.slice(4) || '/';
+    }
+    const app = await createApp();
+    app(req, res);
+  } catch (error: any) {
+    console.error('Serverless handler error:', error);
+    res.status(500).json({ error: error.message, stack: error.stack });
   }
-  const app = await createApp();
-  app(req, res);
 }
