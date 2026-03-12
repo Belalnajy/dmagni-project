@@ -2,12 +2,5 @@
   "buildCommand": "cd frontend && npm run build",
   "outputDirectory": "frontend/.next",
   "framework": "nextjs",
-  "installCommand": "npm install && cd frontend && npm install --include=dev && cd ../backend && npm install",
-  "functions": {
-    "api/index.ts": {
-      "includeFiles": "backend/src/**",
-      "maxDuration": 30,
-      "memory": 1024
-    }
-  }
+  "installCommand": "cd frontend && npm install --include=dev"
 }
