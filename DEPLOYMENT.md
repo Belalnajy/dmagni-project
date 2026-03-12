@@ -1,6 +1,7 @@
 # Deployment Guide — Vercel (Single Project)
 
 الـ frontend (Next.js) والـ backend (API Routes) كلهم في project واحد.
+
 - الصفحات على `/`
 - الـ API على `/api/*`
 
@@ -14,6 +15,8 @@
   - **Supabase**: https://supabase.com
 
 ---
+
+2
 
 ## الخطوة 1 — جهّز قاعدة البيانات
 
@@ -38,13 +41,13 @@
 3. **Framework Preset**: `Next.js`
 4. **Environment Variables**:
 
-   | Key | Value |
-   |-----|-------|
-   | `DATABASE_URL` | postgresql connection string |
-   | `CLOUDINARY_CLOUD_NAME` | من Cloudinary dashboard |
-   | `CLOUDINARY_API_KEY` | من Cloudinary dashboard |
-   | `CLOUDINARY_API_SECRET` | من Cloudinary dashboard |
-   | `REPLICATE_API_TOKEN` | من https://replicate.com/account/api-tokens |
+   | Key                     | Value                                       |
+   | ----------------------- | ------------------------------------------- |
+   | `DATABASE_URL`          | postgresql connection string                |
+   | `CLOUDINARY_CLOUD_NAME` | من Cloudinary dashboard                     |
+   | `CLOUDINARY_API_KEY`    | من Cloudinary dashboard                     |
+   | `CLOUDINARY_API_SECRET` | من Cloudinary dashboard                     |
+   | `REPLICATE_API_TOKEN`   | من https://replicate.com/account/api-tokens |
 
 5. Deploy.
 
@@ -77,8 +80,8 @@ dmagni-project/
 
 ## Troubleshooting
 
-| المشكلة | الحل |
-|---------|------|
-| Database connection error | تحقق من `DATABASE_URL` وإن SSL مفعّل |
-| 504 Gateway Timeout | الـ Replicate بياخد وقت — upgrade لـ Vercel Pro |
-| TypeORM decorator errors | تأكد `experimentalDecorators` في `tsconfig.json` |
+| المشكلة                   | الحل                                             |
+| ------------------------- | ------------------------------------------------ |
+| Database connection error | تحقق من `DATABASE_URL` وإن SSL مفعّل             |
+| 504 Gateway Timeout       | الـ Replicate بياخد وقت — upgrade لـ Vercel Pro  |
+| TypeORM decorator errors  | تأكد `experimentalDecorators` في `tsconfig.json` |
