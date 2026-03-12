@@ -43,12 +43,12 @@ export default function SettingsPage() {
   ];
 
   return (
-    <div className="space-y-8 max-w-4xl mx-auto">
+    <div className="space-y-6 sm:space-y-8 max-w-4xl mx-auto">
       <div>
-        <h1 className="text-2xl font-bold text-foreground">
+        <h1 className="text-xl sm:text-2xl font-bold text-foreground">
           {t('admin.settings')}
         </h1>
-        <p className="text-sm text-foreground/30 mt-1">
+        <p className="text-xs sm:text-sm text-foreground/30 mt-1">
           System configuration and information.
         </p>
       </div>
@@ -65,15 +65,15 @@ export default function SettingsPage() {
             <div
               key={i}
               className="flex items-center justify-between px-6 py-4 hover:bg-foreground/[0.01] transition-colors">
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-lg bg-purple-500/10 border border-purple-500/10 flex items-center justify-center">
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-purple-500/10 border border-purple-500/10 flex items-center justify-center shrink-0">
                   <item.icon className="w-4 h-4 text-purple-500 dark:text-purple-400" />
                 </div>
-                <span className="text-[13px] text-foreground/60">
+                <span className="text-xs sm:text-[13px] text-foreground/60 truncate">
                   {item.label}
                 </span>
               </div>
-              <span className="text-[13px] font-medium text-foreground/80 font-mono">
+              <span className="text-xs sm:text-[13px] font-medium text-foreground/80 font-mono shrink-0">
                 {item.value}
               </span>
             </div>
@@ -118,10 +118,10 @@ export default function SettingsPage() {
             <div
               key={i}
               className="flex items-center justify-between px-6 py-4 hover:bg-foreground/[0.01] transition-colors">
-              <span className="text-[13px] text-foreground/50">
+              <span className="text-xs sm:text-[13px] text-foreground/50">
                 {item.label}
               </span>
-              <span className="text-[13px] font-semibold text-foreground/80 font-mono">
+              <span className="text-xs sm:text-[13px] font-semibold text-foreground/80 font-mono">
                 {item.value}
               </span>
             </div>
@@ -149,7 +149,7 @@ export default function SettingsPage() {
             <div
               key={i}
               className="flex items-center justify-between px-6 py-4 hover:bg-foreground/[0.01] transition-colors">
-              <span className="text-[13px] text-foreground/50 font-mono">
+              <span className="text-[11px] sm:text-[13px] text-foreground/50 font-mono truncate">
                 {item.label}
               </span>
               <span

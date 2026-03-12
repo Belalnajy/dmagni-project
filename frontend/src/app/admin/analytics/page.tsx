@@ -52,22 +52,22 @@ export default function AnalyticsPage() {
   }
 
   return (
-    <div className="space-y-8 max-w-7xl mx-auto">
+    <div className="space-y-6 sm:space-y-8 max-w-7xl mx-auto">
       <div>
-        <h1 className="text-2xl font-bold text-foreground">
+        <h1 className="text-xl sm:text-2xl font-bold text-foreground">
           {t('admin.analytics')}
         </h1>
-        <p className="text-sm text-foreground/30 mt-1">
+        <p className="text-xs sm:text-sm text-foreground/30 mt-1">
           Visual insights into platform usage and trends.
         </p>
       </div>
 
       {/* Daily Volume */}
-      <div className="p-6 rounded-2xl glass">
-        <h3 className="text-[15px] font-semibold text-foreground mb-6">
+      <div className="p-4 sm:p-6 rounded-2xl glass">
+        <h3 className="text-sm sm:text-[15px] font-semibold text-foreground mb-4 sm:mb-6">
           {t('admin.generationVolume')} — {t('admin.last7days')}
         </h3>
-        <div className="h-80 w-full">
+        <div className="h-56 sm:h-80 w-full">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={data?.dailyData || []}>
               <defs>
@@ -119,13 +119,13 @@ export default function AnalyticsPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         {/* Bar Chart */}
-        <div className="p-6 rounded-2xl glass">
-          <h3 className="text-[15px] font-semibold text-foreground mb-6">
+        <div className="p-4 sm:p-6 rounded-2xl glass">
+          <h3 className="text-sm sm:text-[15px] font-semibold text-foreground mb-4 sm:mb-6">
             Daily Merges vs New Users
           </h3>
-          <div className="h-64 w-full">
+          <div className="h-48 sm:h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={data?.dailyData || []}>
                 <CartesianGrid
@@ -164,8 +164,8 @@ export default function AnalyticsPage() {
         </div>
 
         {/* Pie Chart */}
-        <div className="p-6 rounded-2xl glass">
-          <h3 className="text-[15px] font-semibold text-foreground mb-6">
+        <div className="p-4 sm:p-6 rounded-2xl glass">
+          <h3 className="text-sm sm:text-[15px] font-semibold text-foreground mb-4 sm:mb-6">
             {t('admin.garmentCategories')}
           </h3>
           <div className="h-48 w-full">

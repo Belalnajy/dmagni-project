@@ -115,36 +115,36 @@ export default function AdminDashboard() {
   ];
 
   return (
-    <div className="space-y-8 max-w-7xl mx-auto">
+    <div className="space-y-6 sm:space-y-8 max-w-7xl mx-auto">
       <div>
-        <h1 className="text-2xl font-bold text-foreground">
+        <h1 className="text-xl sm:text-2xl font-bold text-foreground">
           {t('admin.dashboard.title')}
         </h1>
-        <p className="text-sm text-foreground/30 mt-1">
+        <p className="text-xs sm:text-sm text-foreground/30 mt-1">
           {t('admin.dashboard.subtitle')}
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {kpiCards.map((kpi, i) => (
           <div
             key={i}
-            className="p-5 rounded-2xl glass hover:bg-foreground/[0.02] transition-all duration-300">
-            <div className="flex items-start justify-between mb-4">
+            className="p-3 sm:p-5 rounded-2xl glass hover:bg-foreground/[0.02] transition-all duration-300">
+            <div className="flex items-start justify-between mb-2 sm:mb-4">
               <div
-                className={`w-10 h-10 rounded-xl bg-${kpi.color}-500/10 border border-${kpi.color}-500/10 flex items-center justify-center`}>
+                className={`w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-${kpi.color}-500/10 border border-${kpi.color}-500/10 flex items-center justify-center`}>
                 <kpi.icon
-                  className={`w-5 h-5 text-${kpi.color}-500 dark:text-${kpi.color}-400`}
+                  className={`w-4 h-4 sm:w-5 sm:h-5 text-${kpi.color}-500 dark:text-${kpi.color}-400`}
                 />
               </div>
             </div>
-            <p className="text-[13px] text-foreground/40 font-medium mb-1">
+            <p className="text-[11px] sm:text-[13px] text-foreground/40 font-medium mb-1">
               {kpi.title}
             </p>
-            <div className="flex items-end justify-between">
-              <p className="text-2xl font-bold text-foreground">{kpi.value}</p>
+            <div className="flex items-end justify-between gap-1">
+              <p className="text-lg sm:text-2xl font-bold text-foreground">{kpi.value}</p>
               <span
-                className={`flex items-center gap-0.5 text-xs font-semibold px-2 py-1 rounded-lg ${kpi.up ? 'text-emerald-500 bg-emerald-500/10' : 'text-rose-500 bg-rose-500/10'}`}>
+                className={`flex items-center gap-0.5 text-[10px] sm:text-xs font-semibold px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-lg ${kpi.up ? 'text-emerald-500 bg-emerald-500/10' : 'text-rose-500 bg-rose-500/10'}`}>
                 {kpi.up ? (
                   <ArrowUpRight className="w-3 h-3" />
                 ) : (
@@ -157,10 +157,10 @@ export default function AdminDashboard() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 p-6 rounded-2xl glass">
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="text-[15px] font-semibold text-foreground">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div className="lg:col-span-2 p-4 sm:p-6 rounded-2xl glass">
+          <div className="flex items-center justify-between mb-4 sm:mb-6">
+            <h3 className="text-sm sm:text-[15px] font-semibold text-foreground">
               {t('admin.generationVolume')}
             </h3>
             <div className="flex items-center gap-4 text-xs text-foreground/30">
@@ -170,7 +170,7 @@ export default function AdminDashboard() {
               </span>
             </div>
           </div>
-          <div className="h-72 w-full">
+          <div className="h-52 sm:h-72 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={analytics?.dailyData || []}>
                 <defs>
@@ -208,8 +208,8 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        <div className="p-6 rounded-2xl glass">
-          <h3 className="text-[15px] font-semibold text-foreground mb-6">
+        <div className="p-4 sm:p-6 rounded-2xl glass">
+          <h3 className="text-sm sm:text-[15px] font-semibold text-foreground mb-4 sm:mb-6">
             {t('admin.garmentCategories')}
           </h3>
           <div className="h-48 w-full">
@@ -259,12 +259,12 @@ export default function AdminDashboard() {
       </div>
 
       <div className="rounded-2xl glass overflow-hidden">
-        <div className="p-6 flex items-center justify-between border-b border-foreground/[0.04]">
+        <div className="p-4 sm:p-6 flex items-center justify-between border-b border-foreground/[0.04]">
           <div>
-            <h3 className="text-[15px] font-semibold text-foreground">
+            <h3 className="text-sm sm:text-[15px] font-semibold text-foreground">
               {t('admin.recentUsers')}
             </h3>
-            <p className="text-xs text-foreground/25 mt-1">
+            <p className="text-[11px] sm:text-xs text-foreground/25 mt-1">
               {t('admin.latestRegistrations')}
             </p>
           </div>

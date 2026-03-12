@@ -80,37 +80,37 @@ export default function BillingPage() {
   ];
 
   return (
-    <div className="space-y-8 max-w-7xl mx-auto">
+    <div className="space-y-6 sm:space-y-8 max-w-7xl mx-auto">
       <div>
-        <h1 className="text-2xl font-bold text-foreground">
+        <h1 className="text-xl sm:text-2xl font-bold text-foreground">
           {t('admin.billing')}
         </h1>
-        <p className="text-sm text-foreground/30 mt-1">
+        <p className="text-xs sm:text-sm text-foreground/30 mt-1">
           API usage, costs, and payment gateway status.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {kpis.map((kpi, i) => (
-          <div key={i} className="p-5 rounded-2xl glass">
+          <div key={i} className="p-3 sm:p-5 rounded-2xl glass">
             <div
-              className={`w-10 h-10 rounded-xl bg-${kpi.color}-500/10 border border-${kpi.color}-500/10 flex items-center justify-center mb-4`}>
+              className={`w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-${kpi.color}-500/10 border border-${kpi.color}-500/10 flex items-center justify-center mb-2 sm:mb-4`}>
               <kpi.icon
-                className={`w-5 h-5 text-${kpi.color}-500 dark:text-${kpi.color}-400`}
+                className={`w-4 h-4 sm:w-5 sm:h-5 text-${kpi.color}-500 dark:text-${kpi.color}-400`}
               />
             </div>
-            <p className="text-[13px] text-foreground/40 mb-1">{kpi.title}</p>
-            <p className="text-2xl font-bold text-foreground">{kpi.value}</p>
+            <p className="text-[11px] sm:text-[13px] text-foreground/40 mb-1">{kpi.title}</p>
+            <p className="text-lg sm:text-2xl font-bold text-foreground">{kpi.value}</p>
           </div>
         ))}
       </div>
 
       {/* Daily Cost Chart */}
-      <div className="p-6 rounded-2xl glass">
-        <h3 className="text-[15px] font-semibold text-foreground mb-6">
+      <div className="p-4 sm:p-6 rounded-2xl glass">
+        <h3 className="text-sm sm:text-[15px] font-semibold text-foreground mb-4 sm:mb-6">
           Daily API Costs — Last 30 Days
         </h3>
-        <div className="h-72 w-full">
+        <div className="h-52 sm:h-72 w-full">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={data?.dailyCosts || []}>
               <defs>
@@ -155,15 +155,16 @@ export default function BillingPage() {
 
       {/* Top Users */}
       <div className="rounded-2xl glass overflow-hidden">
-        <div className="p-6 border-b border-foreground/[0.04]">
-          <h3 className="text-[15px] font-semibold text-foreground">
+        <div className="p-4 sm:p-6 border-b border-foreground/[0.04]">
+          <h3 className="text-sm sm:text-[15px] font-semibold text-foreground">
             Top Users by Usage
           </h3>
-          <p className="text-xs text-foreground/25 mt-1">
+          <p className="text-[11px] sm:text-xs text-foreground/25 mt-1">
             Highest API consumers this period
           </p>
         </div>
-        <table className="w-full text-left">
+        <div className="overflow-x-auto">
+        <table className="w-full text-left min-w-[500px]">
           <thead>
             <tr className="border-b border-foreground/[0.04]">
               {['#', 'User', 'Email', 'Plan', 'Total Merges'].map((h) => (
@@ -202,6 +203,7 @@ export default function BillingPage() {
             ))}
           </tbody>
         </table>
+        </div>
       </div>
 
       {/* Payment Gateway Status */}

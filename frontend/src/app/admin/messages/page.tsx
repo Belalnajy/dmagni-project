@@ -114,13 +114,13 @@ export default function AdminMessagesPage() {
                 key={msg.id}
                 className={`p-6 transition-colors duration-200 ${msg.isRead ? 'bg-background' : 'bg-purple-500/5 border-l-2 border-l-purple-500'}`}
                 onMouseEnter={() => markAsRead(msg.id, msg.isRead)}>
-                <div className="flex justify-between items-start gap-4 mb-2">
+                <div className="flex flex-col sm:flex-row justify-between items-start gap-2 sm:gap-4 mb-2">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-foreground/5 flex items-center justify-center text-foreground font-semibold">
+                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-foreground/5 flex items-center justify-center text-foreground font-semibold shrink-0">
                       {msg.name.charAt(0).toUpperCase()}
                     </div>
-                    <div>
-                      <h4 className="font-semibold text-foreground flex items-center gap-2">
+                    <div className="min-w-0">
+                      <h4 className="font-semibold text-foreground flex items-center gap-2 text-sm sm:text-base">
                         {msg.name}
                         {!msg.isRead && (
                           <span className="px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-500 text-[10px] uppercase font-bold tracking-wider">
@@ -128,15 +128,15 @@ export default function AdminMessagesPage() {
                           </span>
                         )}
                       </h4>
-                      <p className="text-sm text-foreground/50">{msg.email}</p>
+                      <p className="text-xs sm:text-sm text-foreground/50 truncate">{msg.email}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-1.5 text-xs text-foreground/40 shrink-0">
+                  <div className="flex items-center gap-1.5 text-[11px] sm:text-xs text-foreground/40 shrink-0 ml-12 sm:ml-0">
                     <Clock className="w-3.5 h-3.5" />
-                    {new Date(msg.createdAt).toLocaleString()}
+                    {new Date(msg.createdAt).toLocaleDateString()}
                   </div>
                 </div>
-                <div className="pl-13 mt-3">
+                <div className="pl-12 sm:pl-13 mt-3">
                   <p className="text-foreground/80 text-sm whitespace-pre-wrap leading-relaxed">
                     {msg.message}
                   </p>

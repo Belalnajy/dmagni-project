@@ -86,57 +86,57 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="max-w-6xl mx-auto space-y-8 animate-fade-in-up">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0 space-y-6 sm:space-y-8 animate-fade-in-up">
       <header>
-        <h1 className="text-3xl font-bold text-foreground">
+        <h1 className="text-2xl sm:text-3xl font-bold text-foreground">
           {t('dashboard.welcome')},{' '}
           {profile.name || profile.email.split('@')[0]}!
         </h1>
-        <p className="text-foreground/50 mt-1">{t('dashboard.overview')}</p>
+        <p className="text-foreground/50 mt-1 text-sm sm:text-base">{t('dashboard.overview')}</p>
       </header>
 
       {/* Stats Row */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="glass p-6 rounded-3xl border border-foreground/5 relative overflow-hidden group">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110" />
-          <div className="w-12 h-12 rounded-2xl bg-purple-500/10 flex items-center justify-center mb-4 relative z-10">
-            <Sparkles className="w-6 h-6 text-purple-500" />
+      <div className="grid grid-cols-3 gap-3 sm:gap-6">
+        <div className="glass p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-foreground/5 relative overflow-hidden group">
+          <div className="absolute top-0 right-0 w-20 h-20 sm:w-32 sm:h-32 bg-purple-500/10 rounded-bl-full -mr-4 -mt-4 sm:-mr-8 sm:-mt-8 transition-transform group-hover:scale-110" />
+          <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-purple-500/10 flex items-center justify-center mb-3 sm:mb-4 relative z-10">
+            <Sparkles className="w-4 h-4 sm:w-6 sm:h-6 text-purple-500" />
           </div>
-          <p className="text-sm font-medium text-foreground/50 relative z-10">
+          <p className="text-[11px] sm:text-sm font-medium text-foreground/50 relative z-10">
             {t('dashboard.plan')}
           </p>
           <div className="flex items-baseline gap-2 mt-1 relative z-10">
-            <h3 className="text-3xl font-bold text-foreground capitalize">
+            <h3 className="text-lg sm:text-3xl font-bold text-foreground capitalize">
               {profile.subscription?.tier || 'Free'}
             </h3>
           </div>
         </div>
 
-        <div className="glass p-6 rounded-3xl border border-foreground/5 relative overflow-hidden group">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110" />
-          <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center mb-4 relative z-10">
-            <Zap className="w-6 h-6 text-blue-500" />
+        <div className="glass p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-foreground/5 relative overflow-hidden group">
+          <div className="absolute top-0 right-0 w-20 h-20 sm:w-32 sm:h-32 bg-blue-500/10 rounded-bl-full -mr-4 -mt-4 sm:-mr-8 sm:-mt-8 transition-transform group-hover:scale-110" />
+          <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-blue-500/10 flex items-center justify-center mb-3 sm:mb-4 relative z-10">
+            <Zap className="w-4 h-4 sm:w-6 sm:h-6 text-blue-500" />
           </div>
-          <p className="text-sm font-medium text-foreground/50 relative z-10">
+          <p className="text-[11px] sm:text-sm font-medium text-foreground/50 relative z-10">
             {t('dashboard.credits')}
           </p>
           <div className="flex items-baseline gap-2 mt-1 relative z-10">
-            <h3 className="text-3xl font-bold text-foreground">
+            <h3 className="text-lg sm:text-3xl font-bold text-foreground">
               {profile.subscription?.creditsLeft ?? 0}
             </h3>
           </div>
         </div>
 
-        <div className="glass p-6 rounded-3xl border border-foreground/5 relative overflow-hidden group">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110" />
-          <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center mb-4 relative z-10">
-            <ImageIcon className="w-6 h-6 text-emerald-500" />
+        <div className="glass p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-foreground/5 relative overflow-hidden group">
+          <div className="absolute top-0 right-0 w-20 h-20 sm:w-32 sm:h-32 bg-emerald-500/10 rounded-bl-full -mr-4 -mt-4 sm:-mr-8 sm:-mt-8 transition-transform group-hover:scale-110" />
+          <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-emerald-500/10 flex items-center justify-center mb-3 sm:mb-4 relative z-10">
+            <ImageIcon className="w-4 h-4 sm:w-6 sm:h-6 text-emerald-500" />
           </div>
-          <p className="text-sm font-medium text-foreground/50 relative z-10">
+          <p className="text-[11px] sm:text-sm font-medium text-foreground/50 relative z-10">
             {t('dashboard.totalGen')}
           </p>
           <div className="flex items-baseline gap-2 mt-1 relative z-10">
-            <h3 className="text-3xl font-bold text-foreground">
+            <h3 className="text-lg sm:text-3xl font-bold text-foreground">
               {profile.generations.length}
             </h3>
           </div>
@@ -144,20 +144,20 @@ export default function DashboardPage() {
       </div>
 
       {/* Gallery */}
-      <div className="mt-10">
-        <h2 className="text-2xl font-bold text-foreground mb-6">
+      <div className="mt-6 sm:mt-10">
+        <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-4 sm:mb-6">
           {t('dashboard.gallery')}
         </h2>
         {profile.generations.length === 0 ? (
-          <div className="text-center p-12 bg-card rounded-3xl border border-dashed border-foreground/10">
-            <ImageIcon className="w-12 h-12 text-foreground/20 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-foreground mb-1">
+          <div className="text-center p-8 sm:p-12 bg-card rounded-2xl sm:rounded-3xl border border-dashed border-foreground/10">
+            <ImageIcon className="w-10 h-10 sm:w-12 sm:h-12 text-foreground/20 mx-auto mb-4" />
+            <h3 className="text-base sm:text-lg font-medium text-foreground mb-1">
               {t('dashboard.empty.title')}
             </h3>
-            <p className="text-foreground/50">{t('dashboard.empty.desc')}</p>
+            <p className="text-foreground/50 text-sm">{t('dashboard.empty.desc')}</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {profile.generations.map((gen) => (
               <div
                 key={gen.id}
