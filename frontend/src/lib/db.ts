@@ -12,14 +12,18 @@ export async function getDB(): Promise<DataSource> {
     return dataSource;
   }
 
+  const dbUrl = process.env.DATABASE_URL || process.env.DATABASE_POSTGRES_URL || "";
+  const isLocal = dbUrl.includes("localhost") || dbUrl.includes("127.0.0.1");
+
   dataSource = new DataSource({
     type: "postgres",
-    url: process.env.DATABASE_URL || process.env.DATABASE_POSTGRES_URL,
+    url: dbUrl,
     entities: [User, Subscription, GenerationHistory, ContactMessage],
     synchronize: true,
-    ssl: process.env.DATABASE_URL?.includes("localhost")
-      ? false
-      : { rejectUnauthorized: false },
+    ...(!isLocal && {
+      ssl: { rejectUnauthorized: false },
+      extra: { ssl: { rejectUnauthorized: false } },
+    }),
   });
 
   await dataSource.initialize();
