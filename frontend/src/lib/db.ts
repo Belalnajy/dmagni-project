@@ -17,10 +17,9 @@ export async function getDB(): Promise<DataSource> {
     url: process.env.DATABASE_URL || process.env.DATABASE_POSTGRES_URL,
     entities: [User, Subscription, GenerationHistory, ContactMessage],
     synchronize: true,
-    ssl:
-      process.env.NODE_ENV === "production"
-        ? { rejectUnauthorized: false }
-        : false,
+    ssl: process.env.DATABASE_URL?.includes("localhost")
+      ? false
+      : { rejectUnauthorized: false },
   });
 
   await dataSource.initialize();
