@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { getDB } from "@/lib/db";
-import { User } from "@/lib/entities/user.entity";
-import { GenerationHistory } from "@/lib/entities/generation-history.entity";
+import { User, GenerationHistory } from "@/lib/entities";
 import { MoreThanOrEqual } from "typeorm";
 
 export async function GET() {

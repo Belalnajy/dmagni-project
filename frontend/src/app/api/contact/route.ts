@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDB } from "@/lib/db";
-import { ContactMessage } from "@/lib/entities/contact-message.entity";
+import { ContactMessage } from "@/lib/entities";
 
 export async function GET() {
   try {

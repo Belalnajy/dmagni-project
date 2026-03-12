@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDB } from "@/lib/db";
-import { User } from "@/lib/entities/user.entity";
+import { User } from "@/lib/entities";
 
 export async function GET(req: NextRequest) {
   try {

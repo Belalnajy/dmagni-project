@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDB } from "@/lib/db";
-import { User } from "@/lib/entities/user.entity";
-import { Subscription } from "@/lib/entities/subscription.entity";
+import { User, Subscription } from "@/lib/entities";
 
 export async function POST(req: NextRequest) {
   try {
