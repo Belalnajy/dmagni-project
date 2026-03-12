@@ -1,8 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { ExpressAdapter } from '@nestjs/platform-express';
-import { AppModule } from '../src/app.module';
-import * as express from 'express';
+import { AppModule } from '../backend/src/app.module';
+import express from 'express';
 
 const expressApp = express();
 let isInitialized = false;
@@ -34,7 +34,6 @@ async function createApp(): Promise<express.Express> {
 }
 
 export default async function handler(req: any, res: any) {
-  // Strip /api prefix before passing to NestJS
   if (req.url.startsWith('/api')) {
     req.url = req.url.slice(4) || '/';
   }
