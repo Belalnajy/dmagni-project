@@ -12,8 +12,18 @@ export async function getDB(): Promise<DataSource> {
     return dataSource;
   }
 
-  const dbUrl = process.env.DATABASE_URL || process.env.DATABASE_POSTGRES_URL || "";
+  let dbUrl = process.env.DATABASE_URL || process.env.DATABASE_POSTGRES_URL || "";
   const isLocal = dbUrl.includes("localhost") || dbUrl.includes("127.0.0.1");
+
+  // pg v8.20+ treats sslmode=require as verify-full which fails with Supabase pooler.
+  // Remove sslmode from URL and handle SSL via TypeORM config instead.
+  if (!isLocal) {
+    try {
+      const url = new URL(dbUrl);
+      url.searchParams.delete("sslmode");
+      dbUrl = url.toString();
+    } catch {}
+  }
 
   dataSource = new DataSource({
     type: "postgres",
@@ -22,7 +32,6 @@ export async function getDB(): Promise<DataSource> {
     synchronize: true,
     ...(!isLocal && {
       ssl: { rejectUnauthorized: false },
-      extra: { ssl: { rejectUnauthorized: false } },
     }),
   });
 
