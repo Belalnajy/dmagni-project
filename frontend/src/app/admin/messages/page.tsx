@@ -29,7 +29,8 @@ export default function AdminMessagesPage() {
 
   const fetchMessages = async () => {
     try {
-      const res = await fetch('http://localhost:5000/contact');
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+      const res = await fetch(`${API_BASE}/contact`);
       if (!res.ok) throw new Error('Failed to load messages');
       const data = await res.json();
       setMessages(data);
@@ -48,7 +49,8 @@ export default function AdminMessagesPage() {
     if (currentReadStatus) return;
 
     try {
-      await fetch(`http://localhost:5000/contact/${id}/read`, {
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+      await fetch(`${API_BASE}/contact/${id}/read`, {
         method: 'PATCH',
       });
       setMessages((prev) =>
