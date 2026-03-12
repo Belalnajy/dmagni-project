@@ -139,7 +139,7 @@ export default function BillingPage() {
               />
               <Tooltip
                 {...tooltipStyle}
-                formatter={(value: number) => [`$${value.toFixed(3)}`, 'Cost']}
+                formatter={(value) => [`$${Number(value).toFixed(3)}`, 'Cost']}
               />
               <Area
                 type="monotone"
