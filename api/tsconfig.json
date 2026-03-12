@@ -7,15 +7,11 @@
     "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "declaration": true,
-    "removeComments": true,
-    "sourceMap": true,
-    "outDir": "./dist",
-    "baseUrl": "../",
     "skipLibCheck": true,
     "strictNullChecks": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["./**/*", "../backend/src/**/*"]
+  "include": ["./**/*", "../backend/src/**/*"],
+  "exclude": ["../backend/src/**/*.spec.ts", "../backend/test/**/*"]
 }

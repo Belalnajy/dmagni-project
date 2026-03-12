@@ -115,7 +115,7 @@ export class AdminService {
   async getAnalytics() {
     const now = new Date();
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    const dailyData = [];
+    const dailyData: { name: string; date: string; merges: number; newUsers: number }[] = [];
 
     for (let i = 6; i >= 0; i--) {
       const dayStart = new Date(now);
@@ -220,7 +220,7 @@ export class AdminService {
       .sort((a, b) => b.generationCount - a.generationCount)
       .slice(0, 10);
 
-    const dailyCosts = [];
+    const dailyCosts: { date: string; cost: number; count: number }[] = [];
     for (let i = 29; i >= 0; i--) {
       const dayStart = new Date(now);
       dayStart.setDate(now.getDate() - i);
