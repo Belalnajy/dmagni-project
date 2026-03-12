@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDB } from "@/lib/db";
-import { User } from "@/lib/entities";
+import { User, Subscription, GenerationHistory } from "@/lib/entities";
 
 export async function GET(req: NextRequest) {
   try {
@@ -11,25 +11,34 @@ export async function GET(req: NextRequest) {
 
     const db = await getDB();
     const userRepo = db.getRepository(User);
+    const subRepo = db.getRepository(Subscription);
+    const genRepo = db.getRepository(GenerationHistory);
 
     const [users, total] = await userRepo.findAndCount({
-      relations: ["subscription", "generations"],
       order: { createdAt: "DESC" },
       skip,
       take: limit,
     });
 
+    const enriched = await Promise.all(
+      users.map(async (u) => {
+        const sub = await subRepo.findOne({ where: { userId: u.id } });
+        const genCount = await genRepo.count({ where: { userId: u.id } });
+        return {
+          id: u.id,
+          name: u.name || "Unknown",
+          email: u.email,
+          role: u.role,
+          plan: sub?.tier || "free",
+          creditsLeft: sub?.creditsLeft ?? 3,
+          totalMerges: genCount,
+          joinedAt: u.createdAt,
+        };
+      })
+    );
+
     return NextResponse.json({
-      users: users.map((u) => ({
-        id: u.id,
-        name: u.name || "Unknown",
-        email: u.email,
-        role: u.role,
-        plan: u.subscription?.tier || "free",
-        creditsLeft: u.subscription?.creditsLeft ?? 3,
-        totalMerges: u.generations.length,
-        joinedAt: u.createdAt,
-      })),
+      users: enriched,
       total,
       page,
       totalPages: Math.ceil(total / limit),

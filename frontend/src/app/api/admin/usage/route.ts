@@ -1,12 +1,13 @@
 import { NextResponse } from "next/server";
 import { getDB } from "@/lib/db";
-import { User, GenerationHistory } from "@/lib/entities";
+import { User, Subscription, GenerationHistory } from "@/lib/entities";
 import { MoreThanOrEqual } from "typeorm";
 
 export async function GET() {
   try {
     const db = await getDB();
     const userRepo = db.getRepository(User);
+    const subRepo = db.getRepository(Subscription);
     const genRepo = db.getRepository(GenerationHistory);
 
     const now = new Date();
@@ -31,15 +32,23 @@ export async function GET() {
         }),
       ]);
 
-    const usersWithGens = await userRepo.find({
-      relations: ["generations", "subscription"],
-      take: 50,
-    });
+    const users = await userRepo.find({ take: 50 });
 
-    const sortedTopUsers = usersWithGens
-      .map((u) => ({ ...u, generationCount: u.generations.length }))
-      .sort((a, b) => b.generationCount - a.generationCount)
-      .slice(0, 10);
+    const topUsers = await Promise.all(
+      users.map(async (u) => {
+        const genCount = await genRepo.count({ where: { userId: u.id } });
+        const sub = await subRepo.findOne({ where: { userId: u.id } });
+        return {
+          id: u.id,
+          name: u.name || "Unknown",
+          email: u.email,
+          plan: sub?.tier || "free",
+          totalMerges: genCount,
+        };
+      })
+    );
+
+    topUsers.sort((a, b) => b.totalMerges - a.totalMerges);
 
     const dailyCosts: { date: string; cost: number; count: number }[] = [];
     for (let i = 29; i >= 0; i--) {
@@ -75,13 +84,7 @@ export async function GET() {
           ? ((completedThisMonth / totalThisMonth) * 100).toFixed(1)
           : "0",
       estimatedMonthlyCost: totalThisMonth * 0.036,
-      topUsers: sortedTopUsers.map((u) => ({
-        id: u.id,
-        name: u.name || "Unknown",
-        email: u.email,
-        plan: u.subscription?.tier || "free",
-        totalMerges: u.generationCount,
-      })),
+      topUsers: topUsers.slice(0, 10),
       dailyCosts,
     });
   } catch (error: any) {

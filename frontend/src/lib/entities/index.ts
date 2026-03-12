@@ -1,11 +1,8 @@
+import "reflect-metadata";
 import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  OneToMany,
-  OneToOne,
-  ManyToOne,
-  JoinColumn,
   CreateDateColumn,
   UpdateDateColumn,
 } from "typeorm";
@@ -27,12 +24,6 @@ export class User {
   @Column({ default: "user" })
   role: string;
 
-  @OneToMany(() => GenerationHistory, (g) => g.user)
-  generations: GenerationHistory[];
-
-  @OneToOne(() => Subscription, (s) => s.user)
-  subscription: Subscription;
-
   @CreateDateColumn()
   createdAt: Date;
 
@@ -47,10 +38,6 @@ export class Subscription {
 
   @Column({ unique: true })
   userId: string;
-
-  @OneToOne(() => User, (u) => u.subscription)
-  @JoinColumn({ name: "userId" })
-  user: User;
 
   @Column({ default: "free" })
   tier: string;
@@ -72,10 +59,6 @@ export class GenerationHistory {
 
   @Column()
   userId: string;
-
-  @ManyToOne(() => User, (u) => u.generations)
-  @JoinColumn({ name: "userId" })
-  user: User;
 
   @Column()
   modelImgUrl: string;
