@@ -1,8 +1,8 @@
 {
-  "buildCommand": "cd frontend && npm install && npm run build",
+  "buildCommand": "cd frontend && npm run build",
   "outputDirectory": "frontend/.next",
   "framework": "nextjs",
-  "installCommand": "npm install && npm install --prefix frontend && npm install --prefix backend",
+  "installCommand": "npm install && cd frontend && npm install --include=dev && cd ../backend && npm install",
   "functions": {
     "api/index.ts": {
       "includeFiles": "backend/src/**",
