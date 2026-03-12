@@ -34,6 +34,10 @@ async function createApp(): Promise<express.Express> {
 }
 
 export default async function handler(req: any, res: any) {
+  // Strip /api prefix before passing to NestJS
+  if (req.url.startsWith('/api')) {
+    req.url = req.url.slice(4) || '/';
+  }
   const app = await createApp();
   app(req, res);
 }

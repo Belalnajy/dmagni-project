@@ -23,7 +23,11 @@ async function bootstrap() {
     }),
   );
 
-  await app.listen(process.env.PORT ?? 5000);
+  if (process.env.NODE_ENV !== 'production') {
+    await app.listen(process.env.PORT ?? 5000);
+  } else {
+    await app.init();
+  }
   console.log(
     `🚀 Backend running on http://localhost:${process.env.PORT ?? 5000}`,
   );
