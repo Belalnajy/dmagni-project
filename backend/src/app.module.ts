@@ -30,9 +30,10 @@ import { ContactModule } from './contact/contact.module';
     ]),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      url: process.env.DATABASE_URL,
+      url: process.env.DATABASE_URL || process.env.DATABASE_POSTGRES_URL,
       entities: [User, Subscription, GenerationHistory, ContactMessage],
-      synchronize: true, // Be careful in production, but okay for dev
+      synchronize: true,
+      ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
     }),
     AuthModule,
     UserModule,
